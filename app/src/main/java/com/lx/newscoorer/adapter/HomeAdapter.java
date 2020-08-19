@@ -1,11 +1,14 @@
 package com.lx.newscoorer.adapter;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.lx.newscoorer.R;
 import com.lx.newscoorer.bean.CategoryBean;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -14,11 +17,12 @@ import java.util.List;
 /**
  * 主页面--左侧菜单的列表布局--Adapter
  */
-public class HomeAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHolder> {
+public class HomeAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHolder> implements LoadMoreModule {
 
     /**
      * 1. List<String>  字符串集合时这样写
      * 2. List<XxxBean>  对象集合时这样写，导致这样下面item 的类型就得改成XxxBean，可以直接用属性了
+     *
      * @param data
      */
     public HomeAdapter(List<CategoryBean> data) {
@@ -38,6 +42,8 @@ public class HomeAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHolder> 
 
     @Override
     protected void convert(@NotNull BaseViewHolder helper, @NotNull CategoryBean item) {
+        int position = helper.getLayoutPosition();
+//        Log.e("liuxing",position+"=========="+item.getTitle());
         /**
          * BaseQuickAdapter  基本用法参考文档
          * https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/readme/1-BaseQuickAdapter.md
@@ -45,7 +51,7 @@ public class HomeAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHolder> 
          * 这里控件有两种用法，注意我的item里控件命名，多规范啊
          */
         //写法一。框架自己通用的，如果像图片其他控件，没有提供，就得用第二种了
-        helper.setText(R.id.tv_item_homecate_name, item.getTitle());
+        helper.setText(R.id.tv_item_homecate_name, position+"=="+item.getTitle());
         helper.setText(R.id.tv_item_homecate_color, item.getColor());
 
         //写法二,先获取控件，在用安卓自己的方法去做

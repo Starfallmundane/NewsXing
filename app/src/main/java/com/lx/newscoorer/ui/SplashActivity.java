@@ -25,26 +25,15 @@ public class SplashActivity extends AppCompatActivity {
         public void run() {
             toHomeActivity();
         }
-//            boolean isFirst = sp.getBoolean("isFirst",true);
-//            if(isFirst){
-//                Intent intent = new Intent(SplashActivity.this, GuideActivity.class);
-//                startActivity(intent);
-//                sp.edit().putBoolean("isFirst",false).apply();
-//            }else {
-//                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//            finish();
-//        }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        handler.postDelayed(runnableToLogin, 6000);
-        sp=getSharedPreferences("config",MODE_PRIVATE);
-        btnSkip=findViewById(R.id.splash_btn_skip);
+        handler.postDelayed(runnableToLogin, 2000);
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        btnSkip = findViewById(R.id.splash_btn_skip);
 //        监听事件
         initClick();
 
@@ -53,21 +42,21 @@ public class SplashActivity extends AppCompatActivity {
     /**
      * 判断是否是第一次然后跳转到主界面
      */
-    @SuppressLint("CommitPrefEdits")
     private void toHomeActivity() {
 //        第一次打开页面
-         boolean isFirst = sp.getBoolean("isFirst",true);
-        if(isFirst){
+        boolean isFirst = sp.getBoolean("isFirst", true);
+        if (isFirst) {
             Intent intent = new Intent(SplashActivity.this, GuideActivity.class);
             startActivity(intent);
-            sp.edit().putBoolean("isFirst",false).apply();
-        }else {
+            sp.edit().putBoolean("isFirst", false).apply();
+        } else {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
         }
         finish();
     }
-    private void initClick(){
+
+    private void initClick() {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +66,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

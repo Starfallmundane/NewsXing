@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner_home"
         android:layout_width="match_parent"
@@ -17,15 +18,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="我是网络请求的列表数据"
         android:padding="10dp"
+        android:text="我是网络请求的列表数据"
         android:textColor="@color/col_text1"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home"
+    <!--安卓自带系统刷新控件-->
+    <!--需要添加远程库  implementation 'com.android.support:design:29.0.0'   -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rv_menu = findViewById(R.id.rv_menu);
         rv_menu.setLayoutManager(new LinearLayoutManager(this));
         rv_menu.setAdapter(adapter);
-        adapter.setNewData(menuList);
+        adapter.setList(menuList);
     }
 
     public void initView() {
