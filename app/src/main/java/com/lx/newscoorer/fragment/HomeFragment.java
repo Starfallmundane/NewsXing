@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
                     public void onResponse(String response, int ids) {
 //                        Log.e("liuxing", "首页数据：" + response);
                         /**
-                         * 这里我写法不一样，是因为每个接口都有自己对应的数据结构，灵活去变化，解析就行
+                         * 这里我解析数据不一样，是因为每个接口都有自己对应的数据结构，灵活去变化，解析出来就行
                          * 解析数据分两种，一种用原生的JSONObject去解析取值；  一种是gson框架解析
                          * 这里我用了两种，先用的原生的，取出category数据，然后用gson框架去解析
                          *
