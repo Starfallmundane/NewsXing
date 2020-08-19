@@ -1,4 +1,4 @@
-package com.lx.fragment;
+package com.lx.newscoorer.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lx.bean.BaseBean;
-import com.lx.bean.NewsBean;
+import com.lx.newscoorer.bean.BaseBean;
+import com.lx.newscoorer.bean.NewsBean;
 import com.lx.newscoorer.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;

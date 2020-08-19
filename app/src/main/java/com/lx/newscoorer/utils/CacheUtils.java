@@ -1,4 +1,4 @@
-package com.lx.utils;
+package com.lx.newscoorer.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

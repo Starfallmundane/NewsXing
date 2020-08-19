@@ -1,4 +1,4 @@
-package com.lx.adapter;
+package com.lx.newscoorer.adapter;
 
 import android.widget.TextView;
 

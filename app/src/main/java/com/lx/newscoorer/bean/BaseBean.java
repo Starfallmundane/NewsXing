@@ -1,4 +1,4 @@
-package com.lx.bean;
+package com.lx.newscoorer.bean;
 
 import android.text.TextUtils;
 

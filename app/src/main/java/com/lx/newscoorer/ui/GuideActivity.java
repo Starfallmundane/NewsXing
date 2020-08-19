@@ -1,4 +1,4 @@
-package com.lx.newscoorer;
+package com.lx.newscoorer.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.lx.yindao.guuide_1;
-import com.lx.yindao.guuide_2;
-import com.lx.yindao.guuide_3;
+import com.lx.newscoorer.R;
+import com.lx.newscoorer.fragment.guide.GuideFragment1;
+import com.lx.newscoorer.fragment.guide.GuideFragment2;
+import com.lx.newscoorer.fragment.guide.GuideFragment3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class GuideActivity extends FragmentActivity {
                         @Override
                         public void onClick(View v) {
 //                            跳转到主界面
-                            Intent intent = new Intent(GuideActivity.this,MainActivity.class);
+                            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -133,11 +134,11 @@ public class GuideActivity extends FragmentActivity {
         public Fragment getItem(int position) {
             Fragment fragment = null;
             if(position==0){
-                fragment=new guuide_1();
+                fragment=new GuideFragment1();
             }if(position==1){
-                fragment=new guuide_2();
+                fragment=new GuideFragment2();
             }if(position==2){
-                fragment=new guuide_3();
+                fragment=new GuideFragment3();
             }
             assert fragment != null;
             return fragment;

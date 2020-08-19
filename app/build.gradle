@@ -14,6 +14,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,4 +43,5 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:'  //列表recyclerview框架
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'  //列表辅助框架
+    implementation 'com.youth.banner:banner:2.1.0'//轮播图
 }

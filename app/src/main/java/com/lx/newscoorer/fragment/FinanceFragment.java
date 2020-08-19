@@ -1,4 +1,4 @@
-package com.lx.fragment;
+package com.lx.newscoorer.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ServerFragment extends Fragment {
+public class FinanceFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_server, container, false);
-        Log.e("liuxing","创建--ServerFragment");
+        View view = inflater.inflate(R.layout.fragment_finance, container, false);
+        Log.e("liuxing","创建--FinanceFragment");
         return view;
     }
 }

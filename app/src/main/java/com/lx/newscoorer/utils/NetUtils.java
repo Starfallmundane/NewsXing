@@ -1,4 +1,4 @@
-package com.lx.utils;
+package com.lx.newscoorer.utils;
 
 /**
  * 访问tomcat的网络url

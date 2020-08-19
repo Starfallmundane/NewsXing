@@ -1,4 +1,4 @@
-package com.lx.newscoorer;
+package com.lx.newscoorer.ui;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;
@@ -9,12 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lx.adapter.MenuLeftAdapter;
-import com.lx.fragment.FinanceFragment;
-import com.lx.fragment.HomeFragment;
-import com.lx.fragment.NewsFragment;
-import com.lx.fragment.ServerFragment;
-import com.lx.fragment.SettingFragment;
+import com.lx.newscoorer.R;
+import com.lx.newscoorer.adapter.MenuLeftAdapter;
+import com.lx.newscoorer.fragment.FinanceFragment;
+import com.lx.newscoorer.fragment.HomeFragment;
+import com.lx.newscoorer.fragment.NewsFragment;
+import com.lx.newscoorer.fragment.ServerFragment;
+import com.lx.newscoorer.fragment.SettingFragment;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         menuList.add("2222222222");
         menuList.add("3333333333");
         menuList.add("4444444444");
-        menuList.add("555555555");
+        menuList.add("5555555555");
 
         /**
          * 这里创建Adapter填入数据又两种情况

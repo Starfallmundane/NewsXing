@@ -12,11 +12,11 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name="com.lx.newscoorer.MainActivity" />
-        <activity android:name="com.lx.newscoorer.GuideActivity" />
+        <activity android:name="com.lx.newscoorer.ui.MainActivity" />
+        <activity android:name="com.lx.newscoorer.ui.GuideActivity" />
 
         <activity
-            android:name="com.lx.newscoorer.SplashActivity"
+            android:name="com.lx.newscoorer.ui.SplashActivity"
            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

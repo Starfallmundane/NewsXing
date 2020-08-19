@@ -2,14 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
+    <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner_home"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        banner:banner_indicator_gravity="center"
+        banner:banner_indicator_normal_color="@android:color/white"
+        banner:banner_indicator_selected_color="@color/colorPrimary" />
+
     <TextView
+        android:id="@+id/ll_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="45sp"
+        android:layout_marginTop="10dp"
+        android:text="我是网络请求的列表数据"
+        android:padding="10dp"
         android:textColor="@color/col_text1"
-        android:id="@+id/ll_list_item"/>
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

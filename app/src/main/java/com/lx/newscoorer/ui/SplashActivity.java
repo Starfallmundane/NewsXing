@@ -1,4 +1,4 @@
-package com.lx.newscoorer;
+package com.lx.newscoorer.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.lx.newscoorer.R;
 
 public class SplashActivity extends AppCompatActivity {
     public SharedPreferences sp;
