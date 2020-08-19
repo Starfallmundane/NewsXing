@@ -1,8 +1,10 @@
 package com.lx.newscoorer.adapter;
 
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
@@ -55,7 +57,10 @@ public class HomeAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHolder> 
         helper.setText(R.id.tv_item_homecate_color, item.getColor());
 
         //写法二,先获取控件，在用安卓自己的方法去做
-//       TextView tv_item_menu_name= helper.getView(R.id.tv_item_menu_name);
-//        tv_item_menu_name.setText(item);
+        ImageView iv_item_homecate_pic= helper.getView(R.id.iv_item_homecate_pic);
+        String  picUrl="https://p0.ssl.qhimgs1.com/sdr/400__/t011852691d4d1d23ca.jpg";
+        Glide.with(this.getContext())
+                .load(picUrl)
+                .into(iv_item_homecate_pic);
     }
 }

@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> bannerList ;
     private HomeAdapter homeAdapter;
     private SwipeRefreshLayout srl_home;
+    private RecyclerView mRecyclerView;
 
     @Nullable
     @Override
@@ -71,9 +72,9 @@ public class HomeFragment extends Fragment {
 
         //列表控件
         homeAdapter = new HomeAdapter(null);
-        RecyclerView rv_home = view.findViewById(R.id.rv_home);
-        rv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv_home.setAdapter(homeAdapter);
+        mRecyclerView = view.findViewById(R.id.rv_home);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(homeAdapter);
         homeAdapter.setAnimationEnable(true);
 
         initRefreshLayout();
@@ -134,6 +135,8 @@ public class HomeFragment extends Fragment {
 
                         //记的请求结束关闭刷新
                         srl_home.setRefreshing(false);
+                        //服务器错误，显示错误界面
+                        homeAdapter.setEmptyView(getErrorView());
                     }
 
                     @Override
@@ -142,6 +145,7 @@ public class HomeFragment extends Fragment {
 
                         //记的请求结束关闭刷新
                         srl_home.setRefreshing(false);
+                        //支持加载更多
                         homeAdapter.getLoadMoreModule().setEnableLoadMore(true);
 
                         /**
@@ -152,19 +156,13 @@ public class HomeFragment extends Fragment {
                          */
                         JSONObject  jsonObject = null;
                         try {
+                            //解析数据
                             jsonObject = new JSONObject(response);
                             String category = jsonObject.getString("category");
                             List<CategoryBean> newData = new Gson().fromJson(category, new TypeToken<List<CategoryBean>>() {}.getType());
                             Log.e("liuxing","新数据=="+newData.size());
-                            if (isRefresh){     //刷新需要先清空数据，重新添加
-                                homeAdapter.setList(newData);
-                            }else{     //加载更多，直接在原有的数据集合基础上，添加新数据
-                                homeAdapter.addData(newData);
-                                homeAdapter.getLoadMoreModule().loadMoreComplete();
-                                //当后台无数据返回的时候，停止加载更多的时候
-//                                mAdapter.getLoadMoreModule().loadMoreEnd();
-                            }
 
+                            initViewData(isRefresh,newData);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -173,6 +171,63 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void initViewData(boolean isRefresh,List<CategoryBean> newData) {
+        if (isRefresh){     //刷新
+            homeAdapter.setList(newData);
+        }else{     //加载更多
+            homeAdapter.getLoadMoreModule().loadMoreComplete();
+            homeAdapter.addData(newData);
+        }
+
+    }
+
+    //处理数据和界面的关系
+    private void initViewData2(boolean isRefresh,List<CategoryBean> newData) {
+        if (isRefresh){     //第一次或者刷新需要先清空数据，重新添加
+            if (newData!=null){
+                if (newData.size()==0){
+                    homeAdapter.setEmptyView(getEmptyDataView());   //数据为空，显示空界面
+                }else{
+                    homeAdapter.setList(newData);
+                }
+            }else{
+                homeAdapter.setEmptyView(getErrorView());  //数据错误，显示错误界面
+            }
+
+        }else{     //加载更多，直接在原有的数据集合基础上，添加新数据
+            if (newData!=null&&newData.size()>0){
+                homeAdapter.addData(newData);
+                homeAdapter.getLoadMoreModule().loadMoreComplete();    //已经得到数据，加载更多执行完成
+            }else{
+                //当后台加载更多无数据返回的时候，停止加载更多
+                homeAdapter.getLoadMoreModule().loadMoreEnd();
+            }
+        }
+    }
+
+
+    private View getEmptyDataView() {
+        View notDataView = getLayoutInflater().inflate(R.layout.empty_view, mRecyclerView, false);
+        notDataView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getHomeNetData(true);       //点击重新请求数据
+            }
+        });
+        return notDataView;
+    }
+
+    private View getErrorView() {
+        View errorView = getLayoutInflater().inflate(R.layout.error_view, mRecyclerView, false);
+        errorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getHomeNetData(true);      //点击重新请求数据
+            }
+        });
+        return errorView;
     }
 
 }
