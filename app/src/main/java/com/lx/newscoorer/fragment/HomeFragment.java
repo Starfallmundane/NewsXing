@@ -162,6 +162,7 @@ public class HomeFragment extends Fragment {
                             List<CategoryBean> newData = new Gson().fromJson(category, new TypeToken<List<CategoryBean>>() {}.getType());
                             Log.e("liuxing","新数据=="+newData.size());
 
+                            //如果数据有code,判断code==200,如果不是200，就是 数据错误，显示错误界面
                             initViewData(isRefresh,newData);
 
                         } catch (JSONException e) {
@@ -173,7 +174,7 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    private void initViewData(boolean isRefresh,List<CategoryBean> newData) {
+    private void initViewData1(boolean isRefresh,List<CategoryBean> newData) {
         if (isRefresh){     //刷新
             homeAdapter.setList(newData);
         }else{     //加载更多
@@ -184,18 +185,13 @@ public class HomeFragment extends Fragment {
     }
 
     //处理数据和界面的关系
-    private void initViewData2(boolean isRefresh,List<CategoryBean> newData) {
+    private void initViewData(boolean isRefresh,List<CategoryBean> newData) {
         if (isRefresh){     //第一次或者刷新需要先清空数据，重新添加
-            if (newData!=null){
-                if (newData.size()==0){
-                    homeAdapter.setEmptyView(getEmptyDataView());   //数据为空，显示空界面
-                }else{
-                    homeAdapter.setList(newData);
-                }
+            if (newData!=null&&newData.size()>0){
+                homeAdapter.setList(newData);
             }else{
-                homeAdapter.setEmptyView(getErrorView());  //数据错误，显示错误界面
+                homeAdapter.setEmptyView(getEmptyDataView());  //数据为空，显示空界面
             }
-
         }else{     //加载更多，直接在原有的数据集合基础上，添加新数据
             if (newData!=null&&newData.size()>0){
                 homeAdapter.addData(newData);
