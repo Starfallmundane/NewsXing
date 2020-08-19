@@ -21,4 +21,8 @@
     <color name="news_item_has_read_textcolor">#828282</color>
     <color name="news_item_no_read_textcolor">#363636</color>
 
+    <color name="transparent" >#00000000</color>
+    <color name="yellow">#ffff9000</color>
+    <color name="green">#ff40929C</color>
+
 </resources>
