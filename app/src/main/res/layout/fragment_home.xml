@@ -7,7 +7,7 @@
     <com.youth.banner.Banner xmlns:banner="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner_home"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="220dp"
         banner:banner_indicator_gravity="center"
         banner:banner_indicator_normal_color="@android:color/white"
         banner:banner_indicator_selected_color="@color/colorPrimary" />
@@ -20,6 +20,7 @@
         android:text="我是网络请求的列表数据"
         android:padding="10dp"
         android:textColor="@color/col_text1"
+        android:textStyle="bold"
         android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView

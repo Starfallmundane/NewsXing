@@ -54,12 +54,15 @@ public class HomeFragment extends Fragment {
     private void initView() {
         initBannerData();       //轮播图数据
 
+        //轮播图控件
         Banner banner_home = view.findViewById(R.id.banner_home);
         HomeBannerAdapter bannerAdapter = new HomeBannerAdapter(getActivity(), bannerList);
         banner_home.setAdapter(bannerAdapter);
         //设置轮播图底部小圆点
         banner_home.setIndicator(new CircleIndicator(getActivity()));
 
+
+        //列表控件
         homeAdapter = new HomeAdapter(null);
         RecyclerView rv_home = view.findViewById(R.id.rv_home);
         rv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -78,6 +81,7 @@ public class HomeFragment extends Fragment {
         bannerList.add("http://p0.so.qhmsg.com/t01fc496abc036fab17.jpg");
     }
 
+    //网络请求
     private void initHomeData() {
         OkHttpUtils
                 .get()
