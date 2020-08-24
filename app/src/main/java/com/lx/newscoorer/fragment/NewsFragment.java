@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lx.newscoorer.bean.BaseBean;
+import com.lx.newscoorer.bean.CategoryBean;
 import com.lx.newscoorer.bean.NewsBean;
 import com.lx.newscoorer.R;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -20,6 +21,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.Call;
 
 public class NewsFragment extends Fragment {
@@ -60,11 +65,11 @@ public class NewsFragment extends Fragment {
 
     //    解析json字符串
     public void parseJson(String jsonString) {
-        Gson gson = new Gson();
+
         /**
-         * 1. 要解析的json字符串
-         * 2. 安装哪个Javabean解析
+         * 解析方法一
          */
+        Gson gson = new Gson();
 //        BaseBean baseBean = gson.fromJson(jsonString, BaseBean.class);
 //        if (baseBean.isSuccess()) {
 //            BaseBean<List<NewsBean>> data = new Gson().fromJson(jsonString, new TypeToken<BaseBean<List<NewsBean>>>() {}.getType());
@@ -73,10 +78,28 @@ public class NewsFragment extends Fragment {
 //            Log.e("liuxing", mNewsBean.title);
 //        }
 
+        /**
+         * 解析方法二
+         */
+//        BaseBean<List<NewsBean>> baseBean = new Gson().fromJson(jsonString, new TypeToken<BaseBean<List<NewsBean>>>() {}.getType());
+//        if(baseBean.isSuccess()){
+//            List<NewsBean> list=baseBean.data;
+//        }
 
-        BaseBean<List<NewsBean>> baseBean = new Gson().fromJson(jsonString, new TypeToken<BaseBean<List<NewsBean>>>() {}.getType());
-        if(baseBean.isSuccess()){
-            List<NewsBean> list=baseBean.data;
+        /**
+         * 解析方法三
+         */
+        JSONObject jsonObject = null;
+        try {
+            //解析数据
+            jsonObject = new JSONObject(jsonString);
+            //1.先用原生的json去取出来 data 里的数据
+            String data = jsonObject.getString("data");
+            //2.用gson插件去解析 data 里的数据
+            List<NewsBean> newData = new Gson().fromJson(data, new TypeToken<List<NewsBean>>() {}.getType());
+            Log.e("liuxing","新数据=="+newData.size());
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }

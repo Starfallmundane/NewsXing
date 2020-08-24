@@ -158,7 +158,9 @@ public class HomeFragment extends Fragment {
                         try {
                             //解析数据
                             jsonObject = new JSONObject(response);
+                            //1.先用原生的json去取出来category里的数据
                             String category = jsonObject.getString("category");
+                            //2.用gson插件去解析category里的数据
                             List<CategoryBean> newData = new Gson().fromJson(category, new TypeToken<List<CategoryBean>>() {}.getType());
                             Log.e("liuxing","新数据=="+newData.size());
 
